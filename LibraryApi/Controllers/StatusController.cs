@@ -1,20 +1,25 @@
 ﻿using LibraryApi.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace LibraryApi.Controllers
 {
     public class StatusController : Controller
     {
         ISystemTime systemTime;
+        IConfiguration config;
 
-        public StatusController(ISystemTime systemTime)
+        public StatusController(ISystemTime systemTime, IConfiguration config)
         {
             this.systemTime = systemTime;
+            this.config = config;
         }
+
+        //public StatusController(ISystemTime systemTime)
+        //{
+        //    this.systemTime = systemTime;
+        //}
 
         // GET /status -> 200 OK
 
@@ -23,7 +28,7 @@ namespace LibraryApi.Controllers
         {
             var response = new GetStatusResponse
             {
-                Message = "Everything is golden!",
+                Message = "Everything is golden! " + config.GetValue<string>("appName"),
                 CheckedBy = "Kurt Risley",
                 WhenLastChecked = systemTime.GetCurrent()
             };

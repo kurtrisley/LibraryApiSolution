@@ -1,7 +1,6 @@
 ﻿using LibraryApi;
 using LibraryApi.Services;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Testing;
 
 using Microsoft.Extensions.DependencyInjection;
